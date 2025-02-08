@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .image-container {
+            width: 800px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .image-container img {
+            width: 800px;
+            height: 600px;
+            object-fit: cover;
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        function spawnFlowers() {
+            const maxFlowers = Math.floor(Math.random() * 16) + 100; // Spawn between 15 and 30 flowers
+            let count = 0;
+
+            const flowerImages = ["flower1.png", "flower2.png", "flower3.png", "flower4.png", "flower5.png", "flower6.png", "flower7.png"]; // Array of different flower images
+
+            function createFlower() {
+                if (count >= maxFlowers) return;
+
+                const flower = document.createElement("img");
+                const randomFlowerIndex = Math.floor(Math.random() * flowerImages.length);
+                flower.src = flowerImages[randomFlowerIndex]; // Randomly pick a flower image from the array
+                flower.classList.add("flower");
+                document.body.appendChild(flower);
+
+                const x = Math.random() * (window.innerWidth - 50); // Ensure it stays within viewport
+                const y = Math.random() * (window.innerHeight - 50);
+
+                const rotation = Math.random() * 60 - 30; // Rotation between -30deg and +30deg
+                flower.style.transform = `rotate(${rotation}deg)`;
+
+                flower.style.left = `${x}px`;
+                flower.style.top = `${y}px`;
+
+                count++;
+                setTimeout(createFlower, 80); // Spawn next flower after 50ms
+            }
+
+            createFlower();
+        }
+
+        window.onload = function() {
+            setTimeout(spawnFlowers, 1000); // Start spawning flowers after 1000ms
+        };
+    </script>
+</head>
+<body>
+    <div class="image-container">
+        <img src="frame10b.png" alt="Custom Image">
+    </div>
+</body>
+</html>

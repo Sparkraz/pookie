@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .image-container {
+            width: 800px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .image-container img {
+            width: 800px;
+            height: 600px;
+            object-fit: cover;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .button {
+            position: absolute;
+            width: 190px;
+            height: 140px;
+            left: 110px;
+            top: 280px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        function changeImageOnHover() {
+            document.getElementById('mainImage').src = 'frame1a.png';
+        }
+        function revertImage() {
+            document.getElementById('mainImage').src = 'frame1.png';
+        }
+    </script>
+</head>
+<body>
+    <div class="image-container">
+        <button class="button" onclick="window.location.href='frame2.html'" 
+            onmouseover="changeImageOnHover()" 
+            onmouseout="revertImage()">
+        </button>
+        <img id="mainImage" src="frame1.png" alt="Custom Image">
+    </div>
+</body>
+</html>

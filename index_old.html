@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Image</title>
+    <style>
+        body {
+            background-color: rgb(238, 234, 16);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img id="animatedImage" src="base.png" alt="Click to animate">
+
+    <script>
+        const image = document.getElementById("animatedImage");
+        const frames = ["1.png", "2.png", "3.png", "4.png"];
+        const finalImage = "post.png"; // New image after animation
+        let frameIndex = 0;
+        let animationRunning = false;
+        let animationFinished = false;
+
+        function startAnimation() {
+            if (animationRunning || animationFinished) return;
+            animationRunning = true;
+            frameIndex = 0;
+            
+            const interval = setInterval(() => {
+                frameIndex++;
+                if (frameIndex >= frames.length) {
+                    clearInterval(interval);
+                    animationRunning = false;
+                    animationFinished = true;
+                    image.src = finalImage; // Show final image
+                    image.style.cursor = "default"; // Disable further clicks
+                } else {
+                    image.src = frames[frameIndex];
+                }
+            }, 200);
+        }
+
+        image.addEventListener("click", startAnimation);
+    </script>
+</body>
+</html>
